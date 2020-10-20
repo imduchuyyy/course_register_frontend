@@ -9,7 +9,7 @@
     "build:webpack": "webpack",
     "start": "npm run start:webpack",
     "build": "npm run build:webpack",
-    "test": "npm run eslint-fix",
+    "test": "echo test done",
     "eslint-fix": "eslint ./src --fix --quiet"
   },
   "author": "Bui Duc Huy",
