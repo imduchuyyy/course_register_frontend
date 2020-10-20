@@ -9,6 +9,7 @@
     "build:webpack": "webpack",
     "start": "npm run start:webpack",
     "build": "npm run build:webpack",
+    "test": "npm run eslint-fix",
     "eslint-fix": "eslint ./src --fix --quiet"
   },
   "author": "Bui Duc Huy",
@@ -77,6 +78,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "express": "^4.17.1",
     "i18next": "^19.3.4",
     "react": "^16.13.1",
     "react-cookie": "^4.0.3",

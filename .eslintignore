@@ -3,4 +3,4 @@ node_modules/
 dist/
 config/
 *.config.js
-src/
+server.js

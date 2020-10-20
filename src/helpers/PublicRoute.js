@@ -2,9 +2,9 @@ import React from 'react'
 import { Route, Redirect, useLocation } from 'react-router-dom'
 import { useAuth } from '@contexts'
 
-export default function PublicRoute({ children, ...rest }) {
-  let { isAuth } = useAuth()
-  let location = useLocation()
+export function PublicRoute({ children, ...rest }) {
+  const { isAuth } = useAuth()
+  const location = useLocation()
 
   return isAuth ? (
     <Redirect
@@ -15,5 +15,5 @@ export default function PublicRoute({ children, ...rest }) {
     />
   ) : (
     <Route {...rest}>{children}</Route>
-  )
+    )
 }
