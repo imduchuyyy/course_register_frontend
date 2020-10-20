@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "checkJs": false,
+    "baseUrl": ".",
+    "paths": {
+      "@components": ["./src/components/index"],
+      "@contexts": ["./src/contexts/index"],
+      "@pages": ["./src/pages/index"],
+      "@hooks": ["./src/hooks/index"],
+      "@helper": ["./src/helper/index"],
+      "@environments": ["./src/environments/index"],
+      "@layouts": ["./src/layouts/index"]
+    }
+  },
+  "exclude": ["node_modules", "config", "public"],
+  "include": ["src", "../superReport"]
+}
