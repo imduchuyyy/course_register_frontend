@@ -5,9 +5,9 @@ name: GITHUB CI
 
 on:
   push:
-    branches: [new-feature]
+    branches: [master]
   pull_request:
-    branches: [new-feature]
+    branches: [master]
 
 jobs:
   build:
