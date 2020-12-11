@@ -1,0 +1,107 @@
+@import '~antd/dist/antd.css';
+
+.registerContainer {
+  width: 95%;
+  margin: 1% auto;
+  color: #444444;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.component {
+  border-radius: 5px;
+  border-top: 4px #3C8DBC solid;
+  padding: 10px 20px 0;
+}
+
+.outerComponent {
+  margin: 10px 0;
+  margin-bottom: 20px;
+  border: 1px solid #3C8DBC;
+}
+
+.outerComponent > .title {
+  color: white;
+  background-color: #3C8DBC;
+  padding: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.outerComponent .content {
+  padding: 0 15px;
+  display: flex;
+  min-height: 300px;
+}
+
+.outerComponent .content div:nth-child(2) {
+  margin-left: 3%;
+  flex-grow: 1;
+}
+
+.list-item .item{
+  margin: 30px 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.list-item p {
+  margin: 0;
+}
+
+.icon {
+  color: #3C8DBC;
+  font-weight: bold;
+}
+
+.list-item .item .item-title{
+  padding: 7px 15px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.list-item .item .item-title > p:nth-child(odd),
+.list-item .item .item-sub-info > div:not(:last-child)  {
+  width: 15%;
+
+}
+
+.list-item .item .item-title > p:nth-child(even) {
+  flex-grow: 1;
+}
+
+.list-item .item .item-info {
+  display: flex;
+  margin: 7px 15px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.list-item .item .item-info > *,
+.list-item .item .item-sub-info > div:last-child  {
+  flex-grow: 1;
+}
+
+.list-item .item .item-info > * > p:first-child {
+  font-weight: bold;
+}
+
+.list-item .item .item-sub-info {
+  display: flex;
+  margin-left: 10%;
+  margin-right: 15px;
+  padding-bottom: 15px;
+}
+
+.list-item .item .item-sub-info > * > p:first-child {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-style: italic;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}
