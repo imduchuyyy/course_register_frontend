@@ -77,6 +77,7 @@
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
+    "antd": "^4.9.2",
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "i18next": "^19.3.4",

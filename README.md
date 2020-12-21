@@ -1,9 +1,9 @@
-# Code Base Front-end React, Webpack, Babel, Eslint using with RESTful api
+# Course register frontend - this project using for Assignment of Database system
 
 ## Setting:
 
 1. Connect to Backend
-   - Setting in 2 file `.env.development.local` and `.env.production.local`
+   - Setting in 2 file `.env` and `.env.production`
 2. Setting router
    - Setting in `src/configs/routers/index.js`
 3. Setting Provider

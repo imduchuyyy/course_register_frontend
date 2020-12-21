@@ -9,20 +9,20 @@ import App from './App'
 
 const rootElement = document.getElementById('root')
 render(
-  <React.StrictMode>
-    <CookiesProvider>
-      <I18nProvider>
-        <SocketProvider>
-          <AuthProvider>
-            <Suspense fallback={<Loading />}>
-              <BrowserRouter>
-                <App />
-              </BrowserRouter>
-            </Suspense>
-          </AuthProvider>
-        </SocketProvider>
-      </I18nProvider>
-    </CookiesProvider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <CookiesProvider>
+    <I18nProvider>
+      {/* <SocketProvider> */}
+      <AuthProvider>
+        <Suspense fallback={<Loading />}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </Suspense>
+      </AuthProvider>
+      {/* </SocketProvider> */}
+    </I18nProvider>
+  </CookiesProvider>,
+  // </React.StrictMode>,
   rootElement
 )

@@ -1,0 +1,50 @@
+.Outline {
+  margin: 10px;
+  position: relative;
+  top: 140px;
+  left: 35%;
+  width: 30%;
+}
+
+.header {
+  font-family: 'Merriweather';
+  font-size: 200%;
+  text-align: center;
+  position: relative;
+  top: 100px;
+  font-weight: 30;
+}
+
+.fontstyle {
+  font-family: 'Merriweather';
+  font-size: 100%;
+  position: relative;
+  font-weight: 20;
+}
+
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
+}
+
+.login-form-forgot {
+  float: left;
+  font-family: 'Merriweather';
+  text-align: left;
+}
+
+#components-form-demo-normal-login .ant-col-rtl .login-form-forgot {
+  float: left;
+  font-family: 'Merriweather';
+}
+
+.login-form-button {
+  width: 100%;
+  font-family: 'Merriweather';
+  text-align: center;
+}
+
+.register_form {
+  float: right;
+  font-family: 'Merriweather';
+  text-align: right;
+}

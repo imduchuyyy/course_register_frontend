@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 
 import socket from 'socket.io-client'
-import { TOKEN_NAME, API } from '@environments'
+import { TOKEN_NAME, API_LINK } from '@environments'
 
 const SocketContext = createContext()
 
@@ -22,7 +22,7 @@ function SocketValue() {
     const runAsync = async () => {
       try {
         if (!isCancelled) {
-          socketRef.current = socket.connect(API, {
+          socketRef.current = socket.connect(API_LINK, {
             query: { token }
           })
         }

@@ -107,12 +107,12 @@ module.exports = {
             use: [
               {
                 loader: isDev ? 'style-loader' : MiniCssExtractPlugin.loader
-              },
-              {
-                loader: 'css-loader'
-              },
-              { ...postcssLoader },
-              { ...threadLoader }
+              }
+              // {
+              //   loader: 'css-loader'
+              // }
+              // { ...postcssLoader },
+              // { ...threadLoader }
             ]
           },
           {
@@ -212,8 +212,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     new Dotenv({
       path: isDev
-        ? path.resolve(__dirname, './.env.development.local')
-        : path.resolve(__dirname, './.env.production.local'),
+        ? path.resolve(__dirname, './.env')
+        : path.resolve(__dirname, './.env.production'),
       safe: true,
       systemvars: true,
       silent: true
@@ -243,15 +243,15 @@ module.exports = {
       },
       ...(isDev
         ? {
-          minSize: 10000,
-          maxAsyncRequests: Infinity,
-          maxInitialRequests: Infinity
-        }
+            minSize: 10000,
+            maxAsyncRequests: Infinity,
+            maxInitialRequests: Infinity
+          }
         : {
-          minSize: 30000,
-          maxAsyncRequests: 5,
-          maxInitialRequests: 3
-        })
+            minSize: 30000,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3
+          })
     },
     ...(isDev && {
       usedExports: true

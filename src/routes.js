@@ -17,23 +17,6 @@ export const routes = [
     component: 'root',
     status: 'private',
     private: true,
-    routes: [
-      {
-        label: 'Dashboard',
-        path: '/dashboard',
-        component: 'dashboard'
-      },
-      {
-        label: 'home',
-        path: '/home',
-        component: 'home'
-      },
-      {
-        label: 'user',
-        path: '/user/:invitationId',
-        component: 'user',
-        exact: true
-      }
-    ]
-  },
+    role: ['SUPERADMIN', 'STUDENT']
+  }
 ]
