@@ -1,19 +1,30 @@
 import { useAuth } from '@contexts'
 import React from 'react'
+import { Redirect, useLocation } from 'react-router-dom'
+
+const roles = {
+    STUDENT: {
+        path: '/student',
+    },
+    FAULTY: {
+        path: '/faulty'
+    }
+}
 
 function Root() {
-  const { currentUser } = useAuth()
-  console.log(currentUser)
-  return (
-    <div>
-      User Info:
-      <div>First name: {currentUser.FNAME}</div>
-      <div>Last name: {currentUser.LNAME}</div>
-      <div>Email: {currentUser.EMAIL}</div>
-      <div>Birthday: {currentUser.BIRTHDAY}</div>
-      <div>Role: {currentUser.ROLE}</div>
-    </div>
-  )
+    const { currentUser } = useAuth()
+    console.log(currentUser)
+
+    const location = useLocation()
+    
+    return (
+        <Redirect to={{
+            pathname: '/student',
+            state: {
+                from: location
+            }
+        }} />   
+    )
 }
 
 export default Root
