@@ -18,12 +18,7 @@ function Root() {
     const location = useLocation()
     
     return (
-        <Redirect to={{
-            pathname: '/student',
-            state: {
-                from: location
-            }
-        }} />   
+        <div>root page</div> 
     )
 }
 
