@@ -22,11 +22,20 @@ function App() {
               )
             })
           })
+            return (
+                 <PublicRoute key={i} {...route}>
+                    <LayoutDesign>
+                        <LazyComponent />
+                    </LayoutDesign>
+                </PublicRoute>
+            )
           switch (route.status) {
             case 'public':
               return (
                 <PublicRoute key={i} {...route}>
-                  <LazyComponent />
+                    <LayoutDesign>
+                        <LazyComponent />
+                    </LayoutDesign>
                 </PublicRoute>
               )
             case 'private':
