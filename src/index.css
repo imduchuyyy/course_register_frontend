@@ -1,1 +1,15 @@
 @import 'antd/dist/antd.css';
+
+body {
+  font-size: 14px;
+  position: absolute;
+  width: 100%;
+  height: max-content;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  font-family: Roboto, Helvetica, Arial, sans-serif !important;
+  font-weight: 300 !important;
+  line-height: 1.5em !important;
+}

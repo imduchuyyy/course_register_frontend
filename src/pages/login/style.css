@@ -1,35 +1,27 @@
+.login-form {
+  background-color: #b0adad;
+}
+
 .Outline {
-  margin: 10px;
-  position: relative;
-  top: 140px;
-  left: 35%;
-  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  margin-left: 80px;
 }
 
 .header {
-  font-family: 'Merriweather';
   font-size: 200%;
+  color: green;
+  margin-bottom: 50px;
   text-align: center;
-  position: relative;
-  top: 100px;
   font-weight: 30;
 }
 
 .fontstyle {
-  font-family: 'Merriweather';
   font-size: 100%;
   position: relative;
   font-weight: 20;
-}
-
-#components-form-demo-normal-login .login-form {
-  max-width: 300px;
-}
-
-.login-form-forgot {
-  float: left;
-  font-family: 'Merriweather';
-  text-align: left;
 }
 
 #components-form-demo-normal-login .ant-col-rtl .login-form-forgot {
@@ -41,10 +33,4 @@
   width: 100%;
   font-family: 'Merriweather';
   text-align: center;
-}
-
-.register_form {
-  float: right;
-  font-family: 'Merriweather';
-  text-align: right;
 }

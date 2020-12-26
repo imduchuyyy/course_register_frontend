@@ -24,15 +24,15 @@ const threadLoader = {
 }
 
 const alias = {
+  '@assets': path.resolve(__dirname, './src/assets'),
   '@components': path.resolve(__dirname, './src/components'),
-  '@translations': path.resolve(__dirname, './src/translations'),
-  '@hooks': path.resolve(__dirname, './src/hooks'),
   '@contexts': path.resolve(__dirname, './src/contexts'),
-  '@pages': path.resolve(__dirname, './src/pages'),
   '@environments': path.resolve(__dirname, './src/environments'),
   '@helpers': path.resolve(__dirname, './src/helpers'),
+  '@hooks': path.resolve(__dirname, './src/hooks'),
   '@layouts': path.resolve(__dirname, './src/layouts'),
-  '@pages': path.resolve(__dirname, './src/pages')
+  '@pages': path.resolve(__dirname, './src/pages'),
+  '@translations': path.resolve(__dirname, './src/translations')
 }
 
 const postcssLoader = {
@@ -127,6 +127,13 @@ module.exports = {
               { loader: 'sass-loader' },
               { ...threadLoader }
             ]
+          },
+          {
+            test: /\.(png|jpe?g|gif)$/i,
+            loader: 'file-loader',
+            options: {
+              outputPath: 'assets'
+            }
           },
           {
             test: /\.less$/,

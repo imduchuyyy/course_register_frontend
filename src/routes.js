@@ -15,7 +15,7 @@ export const routes = [
     label: 'Student',
     path: '/student',
     component: 'student',
-    status: 'public',
+    status: 'private',
     private: true,
     role: ['STUDENT', 'SUPERADMIN']
   },
@@ -23,7 +23,7 @@ export const routes = [
     label: 'ClassManage',
     path: '/classManage',
     component: 'classManage',
-    status: 'public',
+    status: 'private',
     private: true,
     role: ['STUDENT', 'SUPERADMIN', 'FAULTY', 'INSTRUCTOR', 'AAO']
   },
@@ -52,11 +52,19 @@ export const routes = [
     role: ['SUPERADMIN', 'FAULTY', 'AAO']
   },
   {
+    label: 'DocumentManage',
+    path: '/documentManage',
+    component: 'documentManage',
+    status: 'private',
+    private: true,
+    role: ['SUPERADMIN', 'FAULTY', 'AAO']
+  },
+  {
     label: 'App',
     path: '/',
     component: 'root',
     status: 'private',
     private: true,
     role: ['SUPERADMIN', 'STUDENT']
-  },
+  }
 ]

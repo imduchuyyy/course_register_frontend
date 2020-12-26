@@ -1,0 +1,7 @@
+.welcome-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-flow: column;
+  justify-content: center;
+}

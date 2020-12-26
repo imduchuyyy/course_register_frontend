@@ -53,6 +53,9 @@ function AuthValue() {
   const logout = useCallback(() => {
     localStorage.removeItem(TOKEN_NAME)
     setIsAuth(false)
+    return {
+      message: 'Goodbye'
+    }
   })
 
   const fetchCurrentUser = useCallback(async () => {
