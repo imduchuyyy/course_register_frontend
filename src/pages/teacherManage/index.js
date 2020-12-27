@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import {
   Table,
   Tag,
@@ -11,6 +11,8 @@ import {
   Col
 } from 'antd'
 import ViewTeacher from './viewTeacher'
+import { useCallApi } from '@hooks'
+import { LIST_API } from '@environments'
 
 const { Option } = Select
 const { Title } = Typography
@@ -43,21 +45,31 @@ const columns = [
   }
 ]
 
-const dataSource = [
-  {
-    key: '1',
-    idTeacher: '1',
-    fname: 'Duc',
-    lname: 'Huy',
-    gender: 'name',
-    email: 'duchuy@gmail.com'
-  }
-]
-
 const TeacherManage = () => {
   const [visibleAdd, setVisibleAdd] = useState()
   const [visibleView, setVisibleView] = useState()
   const [selectedRows, setSelectedRows] = useState()
+  const [dataSource, setDataSource] = useState()
+
+  const { postMethod } = useCallApi()
+
+  const fetchData = async () => {
+    const res = await postMethod(LIST_API.LIST_TEACHERS)
+    setDataSource([
+      {
+        key: '1',
+        idTeacher: '1',
+        fname: 'Duc',
+        lname: 'Huy',
+        gender: 'name',
+        email: 'duchuy@gmail.com'
+      }
+    ])
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   const onChange = useCallback(e => {
     console.log(e)

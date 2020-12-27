@@ -1,6 +1,19 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import { Table, Tag, Select, Button, Drawer, Row, Col, Typography } from 'antd'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
+import {
+  Table,
+  Tag,
+  Select,
+  Button,
+  Drawer,
+  Row,
+  Col,
+  Typography,
+  Input,
+  notification
+} from 'antd'
 import CourseExpand from './courseExpand'
+import { useCallApi } from '@hooks'
+import { LIST_API } from '@environments'
 
 const { Option } = Select
 const { Title } = Typography
@@ -8,44 +21,23 @@ const { Title } = Typography
 const columns = [
   {
     title: 'Course Id',
-    dataIndex: 'idCourse',
+    dataIndex: 'COURSE_ID',
     key: 'id'
   },
   {
     title: 'Course Name',
-    dataIndex: 'nameCourse',
+    dataIndex: 'COURSE_NAME',
     key: 'name'
   },
   {
     title: 'Credit',
-    dataIndex: 'credit',
+    dataIndex: 'CREDIT',
     key: 'credit'
   },
   {
     title: 'Faculty Code',
-    dataIndex: 'fcode',
+    dataIndex: 'FCODE',
     key: 'fcode'
-  },
-  {
-    title: 'Main Document',
-    dataIndex: 'mainDocument',
-    key: 'mainDocument'
-  },
-  {
-    title: 'Total student',
-    dataIndex: 'totalStudent',
-    key: 'totalStudent'
-  }
-]
-
-const dataSource = [
-  {
-    idCourse: 1,
-    nameCourse: 'coding',
-    credit: '3',
-    fcode: 'khmt',
-    totalStudent: 1,
-    mainDocument: 'ABC'
   }
 ]
 
@@ -53,10 +45,64 @@ const CourseManage = () => {
   const [visibleAdd, setVisibleAdd] = useState()
   const [visibleView, setVisibleView] = useState()
   const [selectedRows, setSelectedRows] = useState()
+  const [semester, setSemester] = useState('201')
+  const [faculty, setFaculty] = useState('F001')
 
-  const onChange = useCallback(e => {
-    console.log(e)
+  const [dataSource, setDataSource] = useState()
+
+  const courseIdRef = useRef()
+  const courseNameRef = useRef()
+  const courseCreditRef = useRef()
+  const courseFcodeRef = useRef()
+
+  const { postMethod } = useCallApi()
+
+  const fetchData = async () => {
+    const res = await postMethod(LIST_API.LIST_COURSE, {
+      semester,
+      faculty
+    })
+    console.log(res)
+    setDataSource(res)
+  }
+
+  useEffect(() => {
+    fetchData()
   }, [])
+
+  const onChangeSemester = useCallback(e => {
+    setSemester(e)
+  }, [])
+
+  const onChangeFaculty = useCallback(e => {
+    setFaculty(e)
+  }, [])
+
+  const createNewCourse = async () => {
+    const res = await postMethod(LIST_API.ADD_COURSE, {
+      course_id: courseIdRef.current.state.value,
+      course_name: courseNameRef.current.state.value,
+      credit: courseCreditRef.current.state.value,
+      fcode: courseFcodeRef.current.state.value
+    })
+
+    console.log(res)
+
+    if (res) {
+      notification.success({
+        message: 'Create Course Success',
+        description: `You created to ${courseNameRef.current.state.value}`,
+        placement: 'bottomRight'
+      })
+    } else {
+      notification.error({
+        message: 'Create Course Failed',
+        description: `Failed`,
+        placement: 'bottomRight'
+      })
+    }
+    fetchData()
+  }
 
   return (
     <div>
@@ -73,7 +119,7 @@ const CourseManage = () => {
                 style={{ width: 200 }}
                 placeholder='Select semeter'
                 optionFilterProp='children'
-                onChange={onChange}
+                onChange={onChangeSemester}
                 defaultValue='201'
               >
                 <Option value='202'>202</Option>
@@ -95,12 +141,12 @@ const CourseManage = () => {
                 style={{ width: 200 }}
                 placeholder='Select falcuty'
                 optionFilterProp='children'
-                onChange={onChange}
-                defaultValue='201'
+                onChange={onChangeFaculty}
+                defaultValue='F001'
               >
-                <Option value='202'>202</Option>
-                <Option value='201'>201</Option>
-                <Option value='192'>192</Option>
+                <Option value='F001'>F001</Option>
+                <Option value='F002'>F002</Option>
+                <Option value='F003'>F003</Option>
               </Select>
             </Col>
           </Row>
@@ -123,13 +169,24 @@ const CourseManage = () => {
             >
               Cancel
             </Button>
-            <Button onClick={() => setVisibleAdd(false)} type='primary'>
+            <Button onClick={createNewCourse} type='primary'>
               Ok
             </Button>
           </div>
         }
       >
-        <div></div>
+        <Row>
+          Course Id: <Input ref={courseIdRef}></Input>
+        </Row>
+        <Row>
+          Course Name: <Input ref={courseNameRef}></Input>
+        </Row>
+        <Row>
+          Course Credit: <Input ref={courseCreditRef}></Input>
+        </Row>
+        <Row>
+          Course Fcode: <Input ref={courseFcodeRef}></Input>
+        </Row>
       </Drawer>
       <Drawer
         title='View Course'
@@ -148,7 +205,7 @@ const CourseManage = () => {
             >
               Cancel
             </Button>
-            <Button onClick={() => setVisibleView(false)} type='primary'>
+            <Button onClick={createNewCourse} type='primary'>
               Ok
             </Button>
           </div>

@@ -1,5 +1,8 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { Select, Table, Row, Col } from 'antd'
+import axios from 'axios'
+import { LIST_API } from '@environments'
+import { useCallApi } from '@hooks'
 
 const { Option } = Select
 
@@ -31,17 +34,6 @@ const columnsStudent = [
   }
 ]
 
-const dataSourceStudent = [
-  {
-    key: '1',
-    idStudent: '1',
-    fname: 'Duc',
-    lname: 'Huy',
-    gender: 'name',
-    email: 'duchuy@gmail.com'
-  }
-]
-
 const columnsTeacher = [
   {
     title: 'Student Id',
@@ -70,41 +62,58 @@ const columnsTeacher = [
   }
 ]
 
-const dataSourceTeacher = [
-  {
-    key: '1',
-    idStudent: '1',
-    fname: 'Duc',
-    lname: 'Huy',
-    gender: 'name',
-    email: 'duchuy@gmail.com'
-  }
-]
-
 const ViewClass = props => {
   const { classSelected } = props
-  console.log(classSelected)
+
+  const [dataSource, setDataSource] = useState()
+
+  const { postMethod } = useCallApi()
+
+  const fetchData = async () => {
+    const res = await postMethod(LIST_API.VIEW_CLASS, {
+      course_id: classSelected.COURSE_ID,
+      class_id: classSelected.CLASS_ID
+    })
+    console.log(res)
+
+    setDataSource({
+      students: res.listStudent,
+      teachers: res.listInstructor,
+      document: res.listDocument
+    })
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [classSelected])
 
   const onChange = useCallback(e => {
     console.log(e)
   }, [])
 
+  if (!dataSource) {
+    return <div></div>
+  }
+
   return (
     <div>
-      <Row>
-        <Col>Document: ABC</Col>
-      </Row>
-      <Table
+      {/* <Table
         columns={columnsStudent}
-        dataSource={dataSourceStudent}
+        dataSource={dataSource.students}
         title={() => <p>List Student</p>}
         footer={() => <p>Total student: 1</p>}
+      /> */}
+      <Table
+        columns={columnsStudent}
+        dataSource={dataSource.students}
+        title={() => <p>List Student</p>}
+        footer={() => <p>Total student: {dataSource.students.length} </p>}
       />
       <Table
         columns={columnsTeacher}
-        dataSource={dataSourceTeacher}
+        dataSource={dataSource.teachers}
         title={() => <p>List Teacher</p>}
-        footer={() => <p>Total teacher: 1</p>}
+        footer={() => <p>Total teacher: {dataSource.teachers.length} </p>}
       />
     </div>
   )

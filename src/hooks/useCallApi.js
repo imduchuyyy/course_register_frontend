@@ -9,11 +9,10 @@ import { TOKEN_NAME } from '@environments'
 //   INFO: 'INFO'
 // }
 
-export function useCallApi(url) {
+export function useCallApi() {
   const token = localStorage.getItem(TOKEN_NAME)
 
   const api = axios.create({
-    baseUrl: url,
     timeout: 5000,
     headers: {
       Authorization: `Bearer ${token}`
@@ -29,9 +28,9 @@ export function useCallApi(url) {
     }
   })
 
-  const postMethod = useCallback(async data => {
+  const postMethod = useCallback(async (endpoint, data) => {
     try {
-      const response = await api.post(null, data)
+      const response = await api.post(endpoint, data)
       return response.data
     } catch (err) {
       console.log(err)

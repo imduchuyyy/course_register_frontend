@@ -9,11 +9,132 @@ import './style.css'
 const { Header, Content, Footer } = Layout
 
 const LayoutDesign = props => {
-  const { logout } = useAuth()
+  const { logout, currentUser } = useAuth()
   const location = useLocation()
   const history = useHistory()
   const breadcrumb = location.pathname.substring(1)
   const { children } = props
+
+  const routes = {
+    student: [
+      <Menu.Item key='student' onClick={() => history.push('/student')}>
+        Student
+      </Menu.Item>,
+      <Menu.Item key='classManage' onClick={() => history.push('/classManage')}>
+        Class Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='courseManage'
+        onClick={() => history.push('/courseManage')}
+      >
+        Course Manage
+      </Menu.Item>
+    ],
+    instructor: [
+      <Menu.Item key='classManage' onClick={() => history.push('/classManage')}>
+        Class Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='courseManage'
+        onClick={() => history.push('/courseManage')}
+      >
+        Course Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='courseManage'
+        onClick={() => history.push('/courseManage')}
+      >
+        Document Manage
+      </Menu.Item>
+    ],
+    aao_staff: [
+      <Menu.Item key='classManage' onClick={() => history.push('/classManage')}>
+        Class Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='studentManage'
+        onClick={() => history.push('/studentManage')}
+      >
+        Student Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='teacherManage'
+        onClick={() => history.push('/teacherManage')}
+      >
+        Teacher Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='courseManage'
+        onClick={() => history.push('/courseManage')}
+      >
+        Course Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='documentManage'
+        onClick={() => history.push('/documentManage')}
+      >
+        Document Manage
+      </Menu.Item>
+    ],
+    faculty: [
+      <Menu.Item key='classManage' onClick={() => history.push('/classManage')}>
+        Class Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='studentManage'
+        onClick={() => history.push('/studentManage')}
+      >
+        Student Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='teacherManage'
+        onClick={() => history.push('/teacherManage')}
+      >
+        Teacher Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='courseManage'
+        onClick={() => history.push('/courseManage')}
+      >
+        Course Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='documentManage'
+        onClick={() => history.push('/documentManage')}
+      >
+        Document Manage
+      </Menu.Item>
+    ],
+    superadmin: [
+      <Menu.Item key='classManage' onClick={() => history.push('/classManage')}>
+        Class Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='studentManage'
+        onClick={() => history.push('/studentManage')}
+      >
+        Student Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='teacherManage'
+        onClick={() => history.push('/teacherManage')}
+      >
+        Teacher Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='courseManage'
+        onClick={() => history.push('/courseManage')}
+      >
+        Course Manage
+      </Menu.Item>,
+      <Menu.Item
+        key='documentManage'
+        onClick={() => history.push('/documentManage')}
+      >
+        Document Manage
+      </Menu.Item>
+    ]
+  }
 
   const handleLogout = useCallback(() => {
     const { message } = logout()
@@ -24,44 +145,18 @@ const LayoutDesign = props => {
     })
   }, [])
 
+  console.log(currentUser)
+
   return (
     <Layout className='layout'>
       <Header>
         <div className='logo' />
         <Menu theme='dark' mode='horizontal' selectedKeys={[breadcrumb]}>
-          <Menu.Item
-            key='classManage'
-            onClick={() => history.push('/classManage')}
-          >
-            Class Manage
-          </Menu.Item>
-          <Menu.Item
-            key='studentManage'
-            onClick={() => history.push('/studentManage')}
-          >
-            Student Manage
-          </Menu.Item>
-          <Menu.Item
-            key='teacherManage'
-            onClick={() => history.push('/teacherManage')}
-          >
-            Teacher Manage
-          </Menu.Item>
-          <Menu.Item
-            key='courseManage'
-            onClick={() => history.push('/courseManage')}
-          >
-            Course Manage
-          </Menu.Item>
-          <Menu.Item
-            key='documentManage'
-            onClick={() => history.push('/documentManage')}
-          >
-            Document Manage
-          </Menu.Item>
+          {routes[currentUser.USER_ROLE].map(item => {
+            return item
+          })}
           <Menu.Item
             key='logout'
-            onClick={() => history.push('/documentManage')}
             style={{
               float: 'right'
             }}
@@ -78,7 +173,6 @@ const LayoutDesign = props => {
         </Breadcrumb>
         <div className='site-layout-content'>{children}</div>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Course Registed</Footer>
     </Layout>
   )
 }

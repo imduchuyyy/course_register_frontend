@@ -1,6 +1,8 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { Table, Row, Col, Button, Drawer, Select, Typography } from 'antd'
 import ViewStudent from './viewStudent'
+import { useCallApi } from '@hooks'
+import { LIST_API } from '@environments'
 
 const { Option } = Select
 const { Title } = Typography
@@ -33,24 +35,37 @@ const columns = [
   }
 ]
 
-const dataSource = [
-  {
-    key: '1',
-    idStudent: '1',
-    fname: 'Duc',
-    lname: 'Huy',
-    gender: 'name',
-    email: 'duchuy@gmail.com'
-  }
-]
-
 const StudentManage = () => {
   const [visibleAdd, setVisibleAdd] = useState()
   const [visibleView, setVisibleView] = useState()
   const [selectedRows, setSelectedRows] = useState()
+  const [dataSource, setDataSource] = useState()
+  const [fcode, setFcode] = useState('F001')
+
+  const { postMethod } = useCallApi()
+
+  const fetchData = async () => {
+    const res = await postMethod(LIST_API.LIST_STUDENTS, {
+      fcode
+    })
+    setDataSource([
+      {
+        key: '1',
+        idStudent: '1',
+        fname: 'Duc',
+        lname: 'Huy',
+        gender: 'name',
+        email: 'duchuy@gmail.com'
+      }
+    ])
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   const onChange = useCallback(e => {
-    console.log(e)
+    setFcode(e)
   }, [])
 
   return (
@@ -117,11 +132,11 @@ const StudentManage = () => {
             placeholder='Select Faculty'
             optionFilterProp='children'
             onChange={onChange}
-            defaultValue='201'
+            defaultValue='F001'
           >
-            <Option value='202'>202</Option>
-            <Option value='201'>201</Option>
-            <Option value='192'>192</Option>
+            <Option value='F001'>F001</Option>
+            <Option value='F002'>F002</Option>
+            <Option value='F003'>F003</Option>
           </Select>
         </Col>
       </Row>

@@ -17,7 +17,7 @@ export const routes = [
     component: 'student',
     status: 'private',
     private: true,
-    role: ['STUDENT', 'SUPERADMIN']
+    role: ['student', 'superadmin']
   },
   {
     label: 'ClassManage',
@@ -25,7 +25,7 @@ export const routes = [
     component: 'classManage',
     status: 'private',
     private: true,
-    role: ['STUDENT', 'SUPERADMIN', 'FAULTY', 'INSTRUCTOR', 'AAO']
+    role: ['student', 'superadmin', 'faculty', 'instructor', 'aao_staff']
   },
   {
     label: 'CourseManage',
@@ -33,7 +33,7 @@ export const routes = [
     component: 'courseManage',
     status: 'private',
     private: true,
-    role: ['STUDENT', 'SUPERADMIN', 'FAULTY', 'INSTRUCTOR', 'AAO']
+    role: ['student', 'superadmin', 'faculty', 'instructor', 'aao_staff']
   },
   {
     label: 'TeacherManage',
@@ -41,7 +41,7 @@ export const routes = [
     component: 'teacherManage',
     status: 'private',
     private: true,
-    role: ['SUPERADMIN', 'FAULTY', 'AAO']
+    role: ['superadmin', 'faculty', 'aao_staff']
   },
   {
     label: 'StudentManage',
@@ -49,7 +49,7 @@ export const routes = [
     component: 'studentManage',
     status: 'private',
     private: true,
-    role: ['SUPERADMIN', 'FAULTY', 'AAO']
+    role: ['superadmin', 'faculty', 'aao_staff']
   },
   {
     label: 'DocumentManage',
@@ -57,7 +57,7 @@ export const routes = [
     component: 'documentManage',
     status: 'private',
     private: true,
-    role: ['SUPERADMIN', 'FAULTY', 'AAO']
+    role: ['superadmin', 'faculty', 'instructor']
   },
   {
     label: 'App',
@@ -65,6 +65,6 @@ export const routes = [
     component: 'root',
     status: 'private',
     private: true,
-    role: ['SUPERADMIN', 'STUDENT']
+    role: ['superadmin', 'student', 'faculty', 'instructor', 'aao_staff']
   }
 ]

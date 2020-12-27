@@ -5,15 +5,6 @@ import { Row, Col, Typography } from 'antd'
 import WelComeImg from '@assets/welcome.jpg'
 import './style.css'
 
-const roles = {
-  STUDENT: {
-    path: '/student'
-  },
-  FAULTY: {
-    path: '/faulty'
-  }
-}
-
 const { Title } = Typography
 
 function Root() {
@@ -40,7 +31,7 @@ function Root() {
               color: 'green'
             }}
           >
-            Superadmin
+            {currentUser.LNAME + ' ' + currentUser.FNAME}
           </i>
         </Title>
         <div
@@ -48,9 +39,8 @@ function Root() {
             textAlign: 'center'
           }}
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s
+          Đây là trang Web giảng dạy và học tập của trường Đại học Bách Khoa -
+          Đại học Quốc gia TP. Hồ Chí Minh
         </div>
       </Col>
     </Row>

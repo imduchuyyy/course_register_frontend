@@ -24,7 +24,7 @@ export function PrivateRoute({ children, ...rest }) {
     return <Loading></Loading>
   }
 
-  if (role.indexOf(currentUser.ROLE) != -1) {
+  if (role.indexOf(currentUser.USER_ROLE.toLowerCase()) != -1) {
     return <Route {...rest}>{children}</Route>
   } else {
     notification.error({

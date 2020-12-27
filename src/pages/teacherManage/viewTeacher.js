@@ -1,5 +1,7 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { Select, Table, Row, Col, Typography } from 'antd'
+import { useCallApi } from '@hooks'
+import { LIST_API } from '@environments'
 
 const { Title } = Typography
 const { Option } = Select
@@ -16,9 +18,9 @@ const columns = [
     key: 'idClass'
   },
   {
-    title: 'Year Semeter',
-    dataIndex: 'yearSemeter',
-    key: 'yearSemeter'
+    title: 'Year Semester',
+    dataIndex: 'yearSemester',
+    key: 'yearSemester'
   },
   {
     title: 'Credit',
@@ -27,17 +29,28 @@ const columns = [
   }
 ]
 
-const dataSource = [
-  {
-    idCourse: '1',
-    idClass: '2',
-    yearSemeter: '201',
-    credit: '4'
-  }
-]
-
 const ViewTeacher = props => {
   const { teacher } = props
+
+  const { postMethod } = useCallApi()
+  const [dataSource, setDataSource] = useState()
+  const [selectSemester, setSelectSemester] = useState()
+
+  const fetchData = async () => {
+    const res = await postMethod(LIST_API.LIST_CLASS_BY_TEACHER)
+    setDataSource([
+      {
+        idCourse: '1',
+        idClass: '2',
+        yearSemester: '201',
+        credit: '4'
+      }
+    ])
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   const onChange = useCallback(e => {
     console.log(e)
