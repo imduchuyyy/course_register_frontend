@@ -39,8 +39,8 @@ function Root() {
             textAlign: 'center'
           }}
         >
-          Đây là trang Web giảng dạy và học tập của trường Đại học Bách Khoa -
-          Đại học Quốc gia TP. Hồ Chí Minh
+          This is the E-learning site of Vietnam National University Ho Chi Minh
+          City - University of Technology
         </div>
       </Col>
     </Row>
